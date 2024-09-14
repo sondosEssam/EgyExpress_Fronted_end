@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import Category from "./Category";
+import "../css/CategroiesList.css";
 function CategroiesList() {
   const [Categories, setCategories] = useState([]);
   const api_url = "https://fakestoreapi.com/products/categories";
@@ -12,9 +14,19 @@ function CategroiesList() {
   }
   return (
     <div className="categories">
-      {Categories.map((category)=>{
-        return <button key={category} onClick={handleClick(category)}>{category}</button>
-      })}
+
+        {Categories.map((category) => {
+          return (
+            <>
+              <h1 className="big_title">{category}</h1>
+              <hr />
+
+
+                    <Category category={category} />
+            </>
+          );
+        })}
+
     </div>
   );
 }

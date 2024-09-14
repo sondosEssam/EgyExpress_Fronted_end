@@ -30,6 +30,33 @@ try {
     },
   });
 
+  if(response.status === 401){
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (!refreshToken) {
+      throw new Error("No refresh token found");
+    }
+    const refreshRespone = await fetch("/auth/refresh",
+      {
+       method:"POST",
+       headers:{
+        "Content-Type":"application/json",
+       },
+       body:JSON.stringify({token: refreshToken}),
+       } );
+    if (!refreshRespone.ok) {
+       throw new Error(`HTTP error! status: ${refreshRespone.status}`);
+      }
+      const refreshData = await refreshRespone.json();
+      token = refreshData.token;
+      localStorage.setItem("token", token);
+      response = await fetch(url,{
+        ...options,
+        headers:{
+          ...options.headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  }
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

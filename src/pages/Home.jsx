@@ -18,10 +18,10 @@ function Home() {
         <div ref={sliderRef}>
           <CategroiesList />
         </div>
-        <ProductList />
       </div>
     </>
   );
+  //<ProductList />
   //        <Slider />
 }
 export default Home;
