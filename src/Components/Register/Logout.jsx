@@ -11,7 +11,7 @@ function Logout() {
   const handleLogout = () => {
     dispatch(logout());
     dispatch(clearUser());
-    navigate("/login");
+    navigate("/");
   };
 
   return <button onClick={handleLogout}>Logout</button>;

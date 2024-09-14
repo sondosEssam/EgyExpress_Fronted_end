@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logoo from "../assests/logoo.png";
 import "../css/NavBar.css";
+import {logout} from "../http.js"
 function NavBar(){
     return(
         <>
